@@ -5,12 +5,14 @@ const app = express();
 
 app.use(express.urlencoded({extended: true}));
 
-const app = express();
-    app.get('/', (req,res) => {
-        res.send('Server is up and running');
-    });
 
 
+
+
+
+// app.get('/', (req,res) => {
+//     res.sendFile(__dirname + "/index.html");
+// });
 
 app.listen(3000, (req, res) => {
     console.log('server listening on port 3000')

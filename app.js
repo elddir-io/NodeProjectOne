@@ -3,7 +3,25 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+app.use(express.urlencoded({extended: true})); // deprication of body-parser, so using built-in express body-parser
+
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+
+app.use((req,res,next) => {
+    res.status(404).send('<h1>Page Not Found</h1>');
+});
+
+// app.use((req,res,next) => {});
+// app.send((req,res) => {});
+
+
+
+
+
 
 
 
@@ -11,7 +29,7 @@ app.use(express.urlencoded({extended: true}));
 
 
 // app.get('/', (req,res) => {
-//     res.sendFile(__dirname + "/index.html");
+//     res.sendFile(__dirname + "../index.html");
 // });
 
 app.listen(3000, (req, res) => {

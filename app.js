@@ -7,13 +7,13 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-const adminData = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 app.use(express.urlencoded({extended: true})); // deprication of body-parser, so using built-in express body-parser
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(adminData.routes);
+app.use(adminRoutes);
 app.use(shopRoutes);
 
 app.use((req,res,next) => {
